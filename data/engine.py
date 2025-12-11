@@ -181,7 +181,13 @@ def load_data():
         # Use local file path
         # Assuming script execution root is /home/parzival/analytics/ or we use absolute path
         # Using concise absolute path for reliability in this environment
-        geojson_path = "/home/parzival/analytics/data/india_states_optimized.geojson"
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        geojson_path = os.path.join(base_dir, "india_states_optimized.geojson")
+        
+        # DEBUG LOGGING
+        print(f"DEBUG: base_dir: {base_dir}")
+        print(f"DEBUG: geojson_path: {geojson_path}")
+        print(f"DEBUG: Files in data dir: {os.listdir(base_dir)}")
         
         with open(geojson_path, 'r') as f:
              india_geojson = json.load(f)
